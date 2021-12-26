@@ -1,25 +1,21 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import "./index.css";
+import { useState } from "react";
+import AuthenticatedUser from "./components/auth/AuthenticatedUser";
+import UnAuthenticatedUser from "./components/auth/UnAuthenticatedUser";
+import { BrowserRouter as Router } from "react-router-dom";
+import { AuthContext } from "./context/auth-context";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  const [user] = useState<boolean>(false);
+
+  return user ? (
+    <AuthContext.Provider value={{ user }}>
+      <Router>
+        <AuthenticatedUser />
+      </Router>
+    </AuthContext.Provider>
+  ) : (
+    <UnAuthenticatedUser user={user} />
   );
 }
 
