@@ -1,9 +1,9 @@
 import "./index.css";
 import { useState } from "react";
+import { AuthContext } from "./context/auth-context";
+import { BrowserRouter as Router } from "react-router-dom";
 import AuthenticatedUser from "./components/auth/AuthenticatedUser";
 import UnAuthenticatedUser from "./components/auth/UnAuthenticatedUser";
-import { BrowserRouter as Router } from "react-router-dom";
-import { AuthContext } from "./context/auth-context";
 
 function App() {
   const [user] = useState<boolean>(false);
